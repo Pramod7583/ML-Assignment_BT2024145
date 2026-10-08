@@ -45,6 +45,6 @@ print(f"Hold-out MSE={mean_squared_error(y[idx[k:]], p):.4f}  R2={r2_score(y[idx
 
 # 4) refit on all training data and predict the test file
 model = make_model(deg, alpha).fit(X, y)
-out = test.copy(); out["y"] = model.predict(test.values)
+out = pd.DataFrame({"y": model.predict(test.values)})
 out.to_csv(f"{ROLL}_pred_var{VAR}.csv", index=False)
 print(f"Saved {ROLL}_pred_var{VAR}.csv ({len(out)} rows)")
